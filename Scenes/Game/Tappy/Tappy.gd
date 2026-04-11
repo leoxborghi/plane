@@ -37,3 +37,4 @@ func _physics_process(delta: float) -> void:
 func die() -> void:
 	set_physics_process(false)
 	animated_sprite_2d.stop()
+	get_tree().paused = true

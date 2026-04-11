@@ -23,3 +23,13 @@ func _on_sceer_notifier_screen_exited() -> void:
 
 func _on_life_timer_timeout() -> void:
 	queue_free()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Tappy:
+		body.die()
+
+
+func _on_laser_body_exited(body: Node2D) -> void:
+	if body is Tappy:
+		print("_on_laser_body_exited:", body.name)
