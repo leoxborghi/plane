@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvi7x7f16nw0i"]
+
+[ext_resource type="Script" uid="uid://ccdvtg553oy5n" path="res://Scenes/GameUI/GameUi.gd" id="1_81r78"]
+[ext_resource type="FontFile" uid="uid://c1k8npohst18l" path="res://TAPPY_01/Assets/fonts/LuckiestGuy-Regular.ttf" id="1_diq3n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_81r78"]
+font = ExtResource("1_diq3n")
+font_size = 32
+font_color = Color(1, 0.16078432, 0.47058824, 1)
+outline_size = 5
+outline_color = Color(0.5529412, 0, 0.23529412, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_556m7"]
+font = ExtResource("1_diq3n")
+font_size = 48
+font_color = Color(0.3548202, 0.65925187, 5.7756904e-07, 1)
+outline_size = 5
+outline_color = Color(0.105882354, 0.34901962, 0.2, 1)
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_81r78")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "000"
+label_settings = SubResource("LabelSettings_81r78")
+
+[node name="GameOverLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over"
+label_settings = SubResource("LabelSettings_556m7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PressSpaceLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press Space"
+label_settings = SubResource("LabelSettings_556m7")
+horizontal_alignment = 1
+vertical_alignment = 1

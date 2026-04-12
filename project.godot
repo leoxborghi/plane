@@ -14,6 +14,10 @@ config/name="Plane"
 run/main_scene="uid://cq5xqplpjfiy"
 config/features=PackedStringArray("4.5", "Mobile")
 
+[autoload]
+
+GameManager="*res://Globals/GameManager.gd"
+
 [display]
 
 window/size/viewport_width=480

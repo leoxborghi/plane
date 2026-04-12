@@ -1,7 +1,7 @@
 extends Node
 
 const PIPES = preload("res://Scenes/Pipes/Pipes.tscn")
-var MAIN = load("res://Scenes/Main.tscn")
+
 
 
 
@@ -11,14 +11,12 @@ var MAIN = load("res://Scenes/Main.tscn")
 
 
 
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
-		get_tree().change_scene_to_packed(MAIN )
-
-
-
-
-
+		GameManager.load_main_scene()
+		
 func _ready() -> void:
 	spawn_pipes()
 
