@@ -9,7 +9,7 @@ const SPEED: float = 120.0
 
 
 func _ready() -> void:
-	SignalHub.on_plane_died.connect(on_plane_died)
+	pass
 
 
 
