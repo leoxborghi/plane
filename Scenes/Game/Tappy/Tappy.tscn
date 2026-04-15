@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cfiyyg117nv41"]
+[gd_scene load_steps=12 format=3 uid="uid://cfiyyg117nv41"]
 
 [ext_resource type="Texture2D" uid="uid://bhqcsrsoaom4o" path="res://TAPPY_01/Assets/plane/planes_sheet.png" id="1_2uduh"]
 [ext_resource type="Script" uid="uid://hnjqf6l4hc7r" path="res://Scenes/Game/Tappy/Tappy.gd" id="1_4p6je"]
+[ext_resource type="AudioStream" uid="uid://nh1i6omp4btn" path="res://TAPPY_01/Assets/audio/engine.mp3" id="3_0ydfh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4p6je"]
 atlas = ExtResource("1_2uduh")
@@ -35,6 +36,44 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2uduh"]
 radius = 26.076809
 
+[sub_resource type="Animation" id="Animation_4p6je"]
+resource_name = "thrust"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.4363323129985824, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0ydfh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bie45"]
+_data = {
+&"RESET": SubResource("Animation_0ydfh"),
+&"thrust": SubResource("Animation_4p6je")
+}
+
 [node name="Tappy" type="CharacterBody2D"]
 collision_layer = 2
 floor_stop_on_slope = false
@@ -49,3 +88,14 @@ autoplay = "fly"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 0)
 shape = SubResource("CircleShape2D_2uduh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bie45")
+}
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0ydfh")
+volume_db = -6.0
+autoplay = true
+parameters/looping = true

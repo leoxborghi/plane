@@ -9,7 +9,7 @@ const SPEED: float = 120.0
 
 
 func _ready() -> void:
-	pass 
+	SignalHub.on_plane_died.connect(on_plane_died)
 
 
 
@@ -32,4 +32,4 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_laser_body_exited(body: Node2D) -> void:
 	if body is Tappy:
-		print("_on_laser_body_exited:", body.name)
+		SignalHub.emit_on_point_scored()

@@ -4,11 +4,14 @@ extends CharacterBody2D
 class_name Tappy
 
 
+#signal on_plane_died
+
+
 const JUMP_POWER: float = -350.0
 
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var _gravity: float = ProjectSettings.get("physics/2d/default_gravity")
 var _jumped: bool = false
@@ -21,21 +24,22 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 
-func _physics_process(delta: float) -> void:
-	
-	velocity.y += _gravity * delta 
+func _physics_process(delta: float) -> void:	
 
-	if _jumped:
-		velocity.y = JUMP_POWER
-		_jumped = false
-
+	fly(delta)
 	move_and_slide()
 
 	if is_on_floor():
 		die()
 
-
+func fly(delta: float) -> void:	
+	velocity.y += _gravity * delta	
+	if _jumped:
+		velocity.y = JUMP_POWER
+		_jumped = false
+		animation_player.play("thrust")
+		
+		
 func die() -> void:
-	set_physics_process(false)
-	animated_sprite_2d.stop()
+	SignalHub.emit_on_plane_died()
 	get_tree().paused = true
